@@ -18,6 +18,7 @@ public class editor extends JFrame implements ActionListener {
             MetalLookAndFeel.setCurrentTheme(new OceanTheme());
         }
         catch(Exception e){
+            System.err.println("Error al establecer la UI Look And Feel." +e.getMessage());
         }
 
         txt = new JTextArea();
@@ -30,10 +31,10 @@ public class editor extends JFrame implements ActionListener {
 
         // Cuatro menus items que seran Nuevo, Abrir, Guardar y Mostrar
 
-        JMenuItem menuItemNew = new JMenu("New");
-        JMenuItem menuItemOpen = new JMenu("Open");
-        JMenuItem menuItemSave = new JMenu("Save");
-        JMenuItem menuItemPrint = new JMenu("Print");
+        JMenuItem menuItemNew = new JMenuItem("New");
+        JMenuItem menuItemOpen = new JMenuItem("Open");
+        JMenuItem menuItemSave = new JMenuItem("Save");
+        JMenuItem menuItemPrint = new JMenuItem("Print");
 
         //Action listeners para estos items
 
@@ -53,9 +54,9 @@ public class editor extends JFrame implements ActionListener {
 
         JMenu menuEditor = new JMenu("Editor");
 
-        JMenuItem menuItemCut = new JMenu("Cut");
-        JMenuItem menuItemCopy = new JMenu("Copy");
-        JMenuItem menuItemPaste = new JMenu("Paste");
+        JMenuItem menuItemCut = new JMenuItem("Cut");
+        JMenuItem menuItemCopy = new JMenuItem("Copy");
+        JMenuItem menuItemPaste = new JMenuItem("Paste");
 
         menuItemCut.addActionListener(this);
         menuItemCopy.addActionListener(this);
@@ -82,7 +83,7 @@ public class editor extends JFrame implements ActionListener {
         frame.setJMenuBar(menuBar);
         frame.add(txt);
         frame.setSize(500, 500);
-        frame.show();
+        frame.setVisible(true);
 
     }
 
@@ -107,7 +108,8 @@ public class editor extends JFrame implements ActionListener {
 
             // Creamos una JFileChooser class
 
-            JFileChooser chooser = new JFileChooser("f:");
+            JFileChooser chooser = new JFileChooser("C:/");
+            chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 
             // Se invoca al metodo 'showSaveDialog' para que muestre el dialogo guardado
 
@@ -150,7 +152,7 @@ public class editor extends JFrame implements ActionListener {
 
             // Repetimos utilidades similares a las usadas en la opción "Save"
 
-            JFileChooser chooser = new JFileChooser("f:");
+            JFileChooser chooser = new JFileChooser("C:/");
 
             int r = chooser.showOpenDialog(null);
 
